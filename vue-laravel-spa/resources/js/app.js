@@ -4,7 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
+import TaskListComponent from "./components/TaskListComponent";
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -28,7 +31,20 @@ Vue.component('header-component', HeaderComponent);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/tasks',
+            name: 'task.list',
+            component: TaskListComponent
+        },
+    ]
+});
 
 const app = new Vue({
     el: '#app',
+    router
 });
